@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../images/negativo-02.png" type="image/x-icon" />
+    <link rel="stylesheet" href="../styles/style_citas.css">
+    <title>Citas</title>
+    <style>
+        .patient-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .patient-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #b1bbf3;
+            border-radius: 5px;
+        }
+
+        .waiting {
+            background-color: #f0f0f0;
+        }
+
+        .attending {
+            background-color: #d2ffcc;
+        }
+
+        .attended {
+            background-color: #ccffcc;
+        }
+
+        .button {
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="background"></div>
+        <div class="menu">
+            <div class="contenedorlogo">
+                <img src="../images/logo-blanco-02.png" alt="Logo" class="logo" />
+            </div>
+            <div class="parent-link">
+                <h5><a class="social-link" href="javascript:cambiarInicio()">Inicio</a></h5>
+                <h5><a class="social-link" href="javascript:cambiarPacientes()">Pacientes</a></h5>
+                <h5><a class="social-link" href="javascript:cambiarReceta()">Prescripción</a></h5>
+            </div>
+        </div>
+        <div class="contenedorbase" id="base">
+            <div class="contenedorPacientes" id="pacientes">
+                <div class="contenedorbotones" id="botonesInicio">
+                    <button class="buttonP" onclick="mostrarPendientes()">Pendientes</button>
+                    
+                </div>
+                <div class="contenedortabla" id="tablaPacientes">
+                
+                </div>
+            </div>
+            <div class="contenedorDoctor" id="doctor">
+                <div class="circle"></div>
+                <div class="contenedorinf">
+                    <h4>Dr. Juan Perez Molina Chavarria</h4>
+                </div>
+                <div class="contenedorcargo"></div>
+                <div class="contenedorbot">
+                    <button class="buttonC">Cerrar Sesión</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        fetch('../db/obtener_registros.php')
+            .then(response => response.json())
+            .then(data => {
+                // Llamar a la función para construir la tabla con los registros
+                construirTabla(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+        function construirTabla(registros) {
+            // Obtener el div contenedor de la tabla
+            const tablaPacientes = document.getElementById('tablaPacientes');
+
+            // Crear la tabla y los elementos de encabezado (thead)
+            const table = document.createElement('table');
+            const thead = document.createElement('thead');
+            const tr = document.createElement('tr');
+            const th1 = document.createElement('th');
+            const th2 = document.createElement('th');
+            const th3 = document.createElement('th'); // Nuevo th para los botones
+
+            // Asignar los nombres de los encabezados
+            th1.textContent = 'ID';
+            th2.textContent = 'Nombre';
+            th3.textContent = 'Acciones'; // Texto para el nuevo encabezado
+
+            // Agregar los encabezados a la fila de encabezado
+            tr.appendChild(th1);
+            tr.appendChild(th2);
+            tr.appendChild(th3);
+
+            // Agregar la fila de encabezado al thead
+            thead.appendChild(tr);
+
+            // Agregar el thead a la tabla
+            table.appendChild(thead);
+
+            // Crear el cuerpo de la tabla (tbody)
+            const tbody = document.createElement('tbody');
+
+            // Iterar sobre los registros y crear filas de la tabla
+            registros.forEach(registro => {
+                const tr = document.createElement('tr');
+                tr.setAttribute('data-id', registro.id); // Agregar un atributo data-id con el ID del registro
+
+                // Crear celdas para cada atributo del registro
+                const td1 = document.createElement('td');
+                td1.textContent = registro.id;
+
+                const td2 = document.createElement('td');
+                td2.textContent = registro.Especialidad + ' - ' + registro.Medico;
+
+                const td3 = document.createElement('td');
+                
+                // Crear botón "Llamar"
+                const llamarBtn = document.createElement('button');
+                llamarBtn.textContent = 'Llamar';
+                llamarBtn.classList.add('button');
+                llamarBtn.addEventListener('click', () => {
+                    llamarPaciente(tr); // Llamar función con la fila de la tabla
+                });
+
+                // Crear botón "Eliminar"
+                const eliminarBtn = document.createElement('button');
+                eliminarBtn.textContent = 'Eliminar';
+                eliminarBtn.classList.add('button');
+                eliminarBtn.addEventListener('click', () => {
+                    eliminarPaciente(registro.id); // Llamar función con el ID del paciente
+                });
+
+                // Agregar botones a la celda
+                td3.appendChild(llamarBtn);
+                td3.appendChild(eliminarBtn);
+
+                // Agregar las celdas a la fila de la tabla
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                tr.appendChild(td3);
+
+                // Agregar la fila al tbody
+                tbody.appendChild(tr);
+            });
+
+            // Agregar el tbody a la tabla
+            table.appendChild(tbody);
+
+            // Agregar la tabla al div contenedor
+            tablaPacientes.appendChild(table);
+        }
+
+        function llamarPaciente(row) {
+            // Cambiar clase CSS para cambiar el color de fondo
+            if (!row.classList.contains('attending')) {
+                row.classList.add('attending');
+            } else {
+                row.classList.remove('attending');
+            }
+        }
+
+        function eliminarPaciente(id) {
+            // Hacer la solicitud fetch para eliminar el registro
+            fetch(`../db/eliminar_registro.php?id=${id}`, {
+                method: 'DELETE'
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data); // Mostrar la respuesta del backend en la consola (para propósitos de depuración)
+                if (data.message) {
+                    // Si la eliminación fue exitosa, eliminar la fila de la tabla correspondiente
+                    const filaEliminar = document.querySelector(`tr[data-id="${id}"]`);
+                    filaEliminar.remove();
+                    //alert("Registro eliminado correctamente");
+                    location.reload(); // Recargar la página para reflejar los cambios
+                } else {
+                    // Si hubo un error, mostrar un mensaje de alerta
+                    alert("Error al eliminar el registro. Inténtalo de nuevo más tarde.");
+                }
+            })
+            .catch(error => {
+                console.error('Error al eliminar el registro:', error);
+                alert('Error al eliminar el registro. Consulta la consola para más detalles.');
+            });
+        }
+    </script>
+</body>
+</html>
+
+

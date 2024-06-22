@@ -1,0 +1,227 @@
+/*configuración*/
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Inter', sans-serif;
+}
+.full-height {
+    height: 100%;
+}
+.flex-fill {
+    flex: 1;
+}
+h1 {
+    font-size: 100px;
+    margin-bottom: 32px;
+    line-height: 1.05;
+    margin: 0;
+    color: #015D67;
+}
+h2 {
+    font-size: 30px;
+    margin-bottom: 48px;
+    margin:10px;
+}
+h4{
+    margin: 0;
+}
+h5{
+    font-size: 20px;
+    margin: 10px;
+}
+h6{
+    font-size: 25px;
+    margin: 5px;
+}
+/*Contenedores*/
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("../images/fondo.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(15px); 
+    z-index: 0;
+}
+.content {
+    position: relative;
+    z-index: 1; 
+    width: 100%;
+    height: 100%;
+}
+
+/* Contenedor Encabezado */
+.menu {
+    display: flex;
+    width: 100%;
+    height: 60px;
+    position: relative; 
+    z-index: 1;
+    background-color: #015D67;
+}
+/* Diseño logo */
+.contenedorlogo {
+    display: flex;
+    width: 180px;
+    margin-left: 20px;
+    justify-content: center;
+    align-items: center;
+}
+.logo {
+    margin-top: 16px;
+    height: 90px;
+    width: 180px;
+}
+/*Contenedores Ajax*/
+.contenedorbase{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 530px;
+    position: relative; 
+    z-index: 1;
+}
+
+/* contenedor video */
+.contenedorVideo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 300px;
+    background-color: white;
+    position: relative; 
+    z-index: 1;
+}
+
+.contenedorVideo video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajustar el video para que cubra el contenedor manteniendo la relación de aspecto */
+}
+
+
+.conten{
+    display: flex;
+    width: 100%;
+    height: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.contenNum{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    height: auto;
+    margin: 10px;
+}
+
+.contenTex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: auto;
+    background-color: white;
+    border-radius: 20px 20px 0 0;
+}
+.contenTurno{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 200px;
+    background-color: white;
+}
+.contenEnun{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100px;
+    background-color: #015D67;
+    border-radius: 0 0 20px 20px;
+}
+
+.contenTurn{
+    display: flex;
+    width: 40%;
+    height: 480px;
+    margin: 10px;
+}
+
+.cont{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: auto;
+    margin: 10px;
+}
+.contV{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: auto;
+    margin: 10px;
+}
+
+.conturno{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    background-color: #015D67;
+    
+}
+.coturno{
+    background: linear-gradient(rgba(11, 88, 58, 0.5), rgba(120, 122, 122, 0.712));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 450px;
+    overflow: scroll; 
+    -ms-overflow-style: none; 
+    scrollbar-width: none;
+}
+
+/*tabla*/
+table {
+    width: 100%;
+    border-collapse: collapse;
+    padding: 10px;
+}
+th, td {
+    border: 1px solid rgb(255, 255, 255);
+    padding: 8px;
+    text-align: center;
+}
+tr {
+    color: white;
+}
+
+
+
+
+
+

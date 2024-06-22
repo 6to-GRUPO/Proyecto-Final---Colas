@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Registros</title>
+</head>
+<body>
+    <div id="registros"></div>
+
+    <script>
+        // Realizar una solicitud AJAX para obtener los registros
+        fetch('../db/obtener_registros.php')
+            .then(response => response.json())
+            .then(data => {
+                // Manipular los datos recibidos
+                mostrarRegistros(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+        function mostrarRegistros(registros) {
+            // Acceder al elemento HTML donde se mostrarán los registros
+            var registrosDiv = document.getElementById('registros');
+
+            // Crear un elemento de lista <ul>
+            var ul = document.createElement('ul');
+
+            // Iterar sobre cada registro y agregarlo como un elemento <li>
+            registros.forEach(registro => {
+                var li = document.createElement('li');
+                li.textContent = `Especialidad: ${registro.Especialidad}, Médico: ${registro.Medico}, Fecha: ${registro.Fecha}`;
+                ul.appendChild(li);
+            });
+
+            // Agregar la lista <ul> al div de registros
+            registrosDiv.appendChild(ul);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,277 @@
+/*configuración*/
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Inter', sans-serif;
+}
+.full-height {
+    height: 100%;
+}
+.flex-fill {
+    flex: 1;
+}
+h1 {
+    font-size: 52px;
+    margin-bottom: 32px;
+    line-height: 1.05;
+}
+h2 {
+    font-size: 30px;
+    margin-bottom: 48px;
+}
+h4{
+    margin: 0;
+}
+
+/*boton Paciente*/
+.buttonP {
+    display: inline-block;
+    padding: 10px 60px;
+    background-color: #015D67;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid #015D67;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    margin: 70px;
+}
+.buttonP:hover {
+    background-color: #238f9b;
+    border-color: #238f9b;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+/*boton Emergencia*/
+.buttonE {
+    display: inline-block;
+    padding: 10px 60px;
+    background-color: #f44336;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid #f44336;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    margin: 70px;
+}
+.buttonE:hover {
+    background-color: #d32f2f;
+    border-color: #d32f2f;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+/*boton cerrar seción*/
+.buttonC {
+    display: inline-block;
+    height: 40px;
+    width: 250px;
+    background-color: #015D67;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid #015D67;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    margin: 5px;
+}
+.buttonC:hover {
+    background-color: #238f9b;
+    border-color: #238f9b;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+
+/*Contenedores*/
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("../images/fondo.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(15px); 
+    z-index: 0;
+}
+.content {
+    position: relative;
+    z-index: 1; 
+    width: 100%;
+    height: 100%;
+}
+
+/* Contenedor Encabezado */
+.menu {
+    display: flex;
+    width: auto;
+    height: 60px;
+    position: relative; 
+    z-index: 1;
+    background-color: #015D67;
+}
+/* Diseño logo */
+.contenedorlogo {
+    display: flex;
+    width: 180px;
+    margin-left: 20px;
+    justify-content: center;
+    align-items: center;
+}
+.logo {
+    margin-top: 16px;
+    height: 90px;
+    width: 180px;
+}
+/* Diseño Menu */
+.parent-link {
+    width: 45%;
+    justify-content: space-between;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-left: auto;
+    margin-right: auto;
+}
+.social.links, .msg, a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
+/*Contenedores Ajax*/
+.contenedorbase{
+    display: flex;
+    width: 100%;
+    height: 530px;
+    position: relative; 
+    z-index: 1;
+}
+
+.contenedorPacientes{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+    position: relative; 
+    z-index: 1;
+}
+
+.contenedorDoctor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+    position: relative; 
+    z-index: 1;
+}
+
+.contenedorbotones{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    position: relative; 
+    z-index: 1;
+    margin-top: 5%;
+}
+
+.contenedortabla{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 88%;
+    height: auto;
+    position: relative; 
+    z-index: 1;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*Tabla*/
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    background-color: #238f9b;
+}
+
+/*Doctor*/
+.circle {
+    display: flex;
+    width: 220px;
+    height: 220px;
+    background-color: #d32f2f;
+    border: 4px solid #015D67;
+    border-radius: 50%;
+    position: relative; 
+    z-index: 1;
+    background-image: url('../images/m3.jpg');
+    background-size: cover; 
+    background-position: center;
+}
+.contenedorinf{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: auto;
+    margin: 10px;
+}
+.contenedorcargo{
+    display: flex;
+    width: 50%;
+    height: 200px;
+    background: linear-gradient(rgba(11, 88, 59, 0.342), rgba(67, 94, 94, 0.86));
+    border-radius: 20px;
+}
+.contenedorbot{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: auto;
+}
+
+
+
+
+
+
+.attending {
+    background-color: #1efd00; /* Color de fondo cuando se llama al paciente */
+}
+
+
+
+
+

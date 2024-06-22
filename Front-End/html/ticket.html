@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../images/negativo-02.png" type="image/x-icon" />
+    <link rel="stylesheet" href="../styles/style_Ticket.css">
+    <title>Ticket</title>
+</head>
+<body>
+    <div class="container">
+        <div class="background"></div>
+                <div class="menu">
+                    <div class="contenedorlogo">
+                        <img src="../images/logo-blanco-02.png" alt="Logo" class="logo" />
+                    </div>
+                </div>
+                <div class="contenedorbase" id="base">
+                    
+                    <div class="conten">
+                        <div class="contenNum">
+                            <div class="contenTex"><h2>TURNO</h2></div>
+                            <div class="contenTurno"></div>
+                            <div class="contenEnun"><h2 style="color: white;">CONSULTORIO 3</h2></div>
+                        </div>
+                        <div class="contenTurn">
+                            <div class="cont">
+                                <div class="conturno"><h5 style="color: white;">TICKET</h5></div>
+                                <div class="coturno">
+                                    <table id="tablaIds"></table>
+                                </div>
+                            </div>
+                            <div class="contV">
+                                <div class="conturno"><h5 style="color: white;">CONSULTORIO</h5></div>
+                                <div class="coturno">
+                                    <table>
+                                        <tr><td><h6>1</h6></td></tr>
+                                        <tr><td><h6>2</h6></td></tr>
+                                        <tr><td><h6>3</h6></td></tr>
+                                        <tr><td><h6>4</h6></td></tr>
+                                        <tr><td><h6>5</h6></td></tr>
+                                        <tr><td><h6>6</h6></td></tr>
+                                        <tr><td><h6>7</h6></td></tr>
+                                        <tr><td><h6>8</h6></td></tr>
+                                        <tr><td><h6>9</h6></td></tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <div class="contenedorVideo">
+                        <video autoplay loop controls>
+                            <source src="anuncio.mp4" type="video/mp4">
+                            Tu navegador no soporta la etiqueta de video.
+                        </video>
+                    </div>
+                </div>
+    </div>
+    <script>
+        // Realizar la solicitud fetch para obtener las IDs
+        fetch('../db/obtener_ids.php')
+            .then(response => response.json())
+            .then(data => {
+                construirTablaIds(data);
+                mostrarPrimerId(data);  // Asegurarse de que se llama a la función mostrarPrimerId
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+        function construirTablaIds(ids) {
+            // Obtener la tabla donde se mostrarán las IDs
+            const tablaIds = document.getElementById('tablaIds');
+            
+            // Iterar sobre los IDs y crear filas en la tabla
+            ids.forEach(item => {
+                const tr = document.createElement('tr');
+                const td = document.createElement('td');
+                td.innerHTML = `<h6>P-${item.id}</h6>`;
+                tr.appendChild(td);
+                tablaIds.appendChild(tr);
+            });
+        }
+
+        function mostrarPrimerId(ids) {
+            // Obtener el div donde se mostrará el primer ID
+            const contenTurno = document.querySelector('.contenTurno');
+            
+            // Verificar que el array de ids no esté vacío
+            if (ids.length > 0) {
+                // Mostrar el primer ID con "P" delante en el div contenTurno
+                contenTurno.innerHTML = `<h1 style="color: #015D67;">P-${ids[0].id}</h1>`;
+            }
+        }
+    </script>
+    
+</body>
+</html>

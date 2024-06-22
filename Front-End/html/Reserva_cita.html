@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../images/negativo-02.png" type="image/x-icon">
+    <link rel="stylesheet" href="../styles/style_reserva_cita.css">
+    <title>Citas</title>
+</head>
+<body>
+<div class="container">
+    <div class="background"></div>
+    <div class="menu">
+        <div class="contenedorlogo">
+            <img src="../images/logo-blanco-02.png" alt="Logo" class="logo" />
+        </div>
+        <nav>
+            <ul>
+                <li><a href="Inicio.html">Inicio</a></li>
+                <li><a href="#perfil">Perfil</a></li>
+                <li><a href="Reserva_cita.html">Reserva</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="contenedor">
+        <div class="form_cita">
+            <form id="citaForm" action="../db/guardar_cita.php" method="POST">
+                <label for="especialidad">Especialidad</label> <br />
+                <select id="especialidad" name="especialidad" required>
+                    <option value="" disabled selected></option>
+                    <option value="cardiologia">Cardiología</option>
+                    <option value="dermatologia">Dermatología</option>
+                    <option value="endocrinologia">Endocrinología</option>
+                    <option value="gastroenterologia">Gastroenterología</option>
+                    <option value="neurologia">Neurología</option>
+                    <option value="oftalmologia">Oftalmología</option>
+                    <option value="pediatria">Pediatría</option>
+                    <option value="psiquiatria">Psiquiatría</option>
+                    <option value="traumatologia">Traumatología</option>
+                    <option value="urologia">Urología</option>
+                </select>
+                <br />
+
+                <label for="medico">Medico</label> <br />
+                <select id="medico" name="medico" required>
+                    <option value="" disabled selected></option>
+                    <option value="cardiologia">Cardiología</option>
+                    <option value="dermatologia">Dermatología</option>
+                    <option value="endocrinologia">Endocrinología</option>
+                    <option value="gastroenterologia">Gastroenterología</option>
+                    <option value="neurologia">Neurología</option>
+                    <option value="oftalmologia">Oftalmología</option>
+                    <option value="pediatria">Pediatría</option>
+                    <option value="psiquiatria">Psiquiatría</option>
+                    <option value="traumatologia">Traumatología</option>
+                    <option value="urologia">Urología</option>
+                </select>
+                <br />
+
+                <label for="turno">Turno</label> <br />
+                <select name="turno" id="turno">
+                    <option value="" disabled selected></option>
+                    <option value="mañana">Mañana</option>
+                    <option value="tarde">Tarde</option>
+                </select>
+                <br />
+
+                <label for="hora">Hora</label> <br />
+                <input type="text" name="hora" id="hora" /> <br />
+
+                <label for="fecha">Fecha</label> <br />
+                <input type="text" name="fecha" id="fecha" /> <br />
+
+                <label for="celular">Celular</label> <br />
+                <input type="number" name="celular" id="celular" /> <br />
+
+                <label for="motivo">Motivo</label> <br />
+                <input type="text" name="motivo" id="motivo" /> <br />
+
+                <input type="submit" value="AGENDAR CITA" class="reserva" style="height: 40px;"/>
+                <input type="reset" value="LIMPIAR" class="reserva" style="height: 40px;"/>
+            </form>
+        </div>
+
+        <div class="contenedor2">
+            <div class="contenedor3">
+                <!-- Horario -->
+                <div class="horario_citas">
+                    <div class="titulo_hora">
+                        <h4 style="margin: 15px; font-size: 20px">Horario</h4>
+                    </div>
+                    <div class="turno" role="group" aria-label="Horario de la Mañana">
+                        <h4>Turno Mañana</h4>
+                        <button type="button" class="btn btn-outline-primary time-slot">08:00 - 09:00</button>
+                        <button type="button" class="btn btn-outline-primary time-slot">09:00 - 10:00</button>
+                        <button type="button" class="btn btn-outline-primary time-slot">10:00 - 11:00</button>
+                        <button type="button" class="btn btn-outline-primary time-slot">11:00 - 12:00</button>
+
+                        <h4 style="margin-top: 15px">Turno Tarde</h4>
+                        <button type="button" class="btn btn-outline-primary time-slot">14:00 - 15:00</button>
+                        <button type="button" class="btn btn-outline-primary time-slot">15:00 - 16:00</button>
+                        <button type="button" class="btn btn-outline-primary time-slot">17:00 - 18:00</button>
+                        <button type="button" class="btn btn-outline-primary time-slot">18:00 - 19:00</button>
+                    </div>
+                </div>
+
+                <!--Calendario-->
+                <div class="calendar">
+                    <div class="calendar-header">
+                        <button id="prev" class="nav-button">&lt;</button>
+                        <h2 id="month-year" style="font-size: 20px"></h2>
+                        <button id="next" class="nav-button">&gt;</button>
+                    </div>
+                    <div class="calendar-body">
+                        <div class="calendar-weekdays">
+                            <div class="dia_semana">D</div>
+                            <div class="dia_semana">L</div>
+                            <div class="dia_semana">M</div>
+                            <div class="dia_semana">M</div>
+                            <div class="dia_semana">J</div>
+                            <div class="dia_semana">V</div>
+                            <div class="dia_semana">S</div>
+                        </div>
+                        <div class="calendar-days" id="calendar-days"></div>
+                    </div>
+                </div>
+                <script src="../script/calendario.js"></script>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Script para mostrar la alerta -->
+<script>
+document.getElementById("citaForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Evitar que se envíe el formulario automáticamente
+
+    // Realizar la solicitud AJAX
+    var formData = new FormData(this);
+    fetch('../db/guardar_cita.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message); // Mostrar el mensaje de la respuesta
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});
+</script>
+
+</body>
+</html>
+
+
